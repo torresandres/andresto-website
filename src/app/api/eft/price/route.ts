@@ -45,7 +45,7 @@ export async function GET() {
     stash: { price: 3, tax: 0.4 },
   }
   const nationalTax = 1.21 // Impuestos percepción + IVA
-  const res = await fetch('https://dolarapi.com/v1/dolares', { cache: 'force-cache', next: { revalidate: 60 } })
+  const res = await fetch('https://dolarapi.com/v1/dolares', { cache: 'force-cache', next: { revalidate: 60 } }) 
   const values: DolarApiResponseValue[] = await res.json()
   const officialValue = values.find((value) => value.casa === 'oficial')
   const usdValue = officialValue?.venta || 0 // Valor del dólar oficial más reciente
@@ -80,4 +80,5 @@ export async function GET() {
   } else {
     return new Response('Internal error', { status: 500 })
   }
+
 }
